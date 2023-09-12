@@ -7,7 +7,7 @@ import sys
 
 # will break if there are namespace collisions
 
-file_list = [x.rstrip(".case") for x in glob.glob(f"{os.path.dirname(__file__)}/**/*.case", recursive=True)]
+file_list = [x.rstrip(".cases") for x in glob.glob(f"{os.path.dirname(__file__)}/**/*.cases", recursive=True)]
 file_only_list = [os.path.basename(x) for x in file_list]
 
 if sys.platform == "win32":
