@@ -23,5 +23,5 @@ for file_name in glob.glob("*.c", recursive=False):
             to_run = f.read().split("\n\n")
             for x in to_run:
                 x_split = x.split("\n")
-                return_data = subprocess.run(["./a.out"], input=x[0].rstrip().encode(), capture_output=True).stdout.decode()
-                print(f"\u001b[{31 + int(return_data.rstrip() == x[1].rstrip())}m{return_data}\u001b[0m", x[1])
+                return_data = subprocess.run(["./a.out"], input=x_split[0].rstrip().encode(), capture_output=True).stdout.decode().rstrip()
+                print(f"\u001b[{31 + int(return_data == x_split[1].rstrip())}m{return_data}\u001b[0m", x[1])
