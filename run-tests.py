@@ -16,7 +16,7 @@ if sys.platform == "win32":
 for file_name in glob.glob("*.c", recursive=False):
     if file_name.rstrip(".c") in file_only_list:
         should_continue = input(f"{file_name}; run (y/N)?").lower()
-        if should_continue is not "y":
+        if should_continue != "y":
             continue
         subprocess.run(["gcc", "-std=c11", "-Wall", "-g", file_name], check=True)
         with open(next(x for x in file_list if file_name in x)) as f:
