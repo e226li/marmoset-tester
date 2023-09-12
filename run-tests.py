@@ -11,7 +11,7 @@ file_list = [x.rstrip(".case") for x in glob.glob(f"{os.path.dirname(__file__)}/
 file_only_list = [os.path.basename(x) for x in file_list]
 
 if sys.platform == "win32":
-    subprocess.run("color") # enables ANSI escape characters, bug in Python
+    subprocess.run("color", check=True) # enables ANSI escape characters, bug in Python
 
 for file_name in glob.glob("*.c", recursive=False):
     if file_name.rstrip(".c") in file_only_list:
