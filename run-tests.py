@@ -22,5 +22,5 @@ for file_name in glob.glob("*.c", recursive=False):
         with open(next(x for x in file_list if file_name.rstrip(".c") in x)) as f:
             to_run = f.read().split("\n\n")
             for x in to_run:
-                return_data = subprocess.run(["./a.out"], input=x[0].rstrip().encode('utf-8'), capture_output=True).stdout
-                print(f"\u001b[{31 + int(return_data.rstrip() == x[1].rstrip())}m{return_data}\u001b[0m")
+                return_data = subprocess.run(["./a.out"], input=x[0].rstrip().encode('utf-8'), capture_output=True).stdout.decode()
+                print(f"\u001b[{31 + int(return_data.rstrip() == x[1].rstrip())}m{return_data}\u001b[0m", x[1])
