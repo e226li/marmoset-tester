@@ -7,6 +7,9 @@ import sys
 
 # will break if there are namespace collisions
 
+if os.path.isfile("a.out"):
+    raise FileExistsError # TODO: generate uuid .out
+
 file_list = glob.glob(f"{os.path.dirname(__file__)}/**/*.cases", recursive=True)
 file_only_list = [os.path.basename(x.rstrip(".cases")) for x in file_list]
 
