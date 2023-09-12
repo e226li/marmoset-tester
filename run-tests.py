@@ -7,8 +7,8 @@ import sys
 
 # will break if there are namespace collisions
 
-file_list = [x.rstrip(".cases") for x in glob.glob(f"{os.path.dirname(__file__)}/**/*.cases", recursive=True)]
-file_only_list = [os.path.basename(x) for x in file_list]
+file_list = glob.glob(f"{os.path.dirname(__file__)}/**/*.cases", recursive=True)
+file_only_list = [os.path.basename(x.rstrip(".cases")) for x in file_list]
 
 if sys.platform == "win32":
     os.system("color") # enables ANSI escape characters, bug in Python
@@ -19,7 +19,7 @@ for file_name in glob.glob("*.c", recursive=False):
         if should_continue != "y":
             continue
         subprocess.run(["gcc", "-std=c11", "-Wall", "-g", file_name], check=True)
-        with open(next(x for x in file_list if file_name in x)) as f:
+        with open(next(x for x in file_list if file_name.rstrip(".c") in x)) as f:
             to_run = f.read().split("\n\n")
             for x in to_run:
                 return_data = subprocess.run(["./a.out"], input=x[0].rstrip(), capture_output=True).stdout
