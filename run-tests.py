@@ -15,7 +15,7 @@ if sys.platform == "win32":
 
 for file_name in glob.glob("*.c", recursive=False):
     if file_name.rstrip(".c") in file_only_list:
-        should_continue = input(f"{file_name}; run (y/N)?").lower()
+        should_continue = input(f"{file_name}; run (y/N)? ").lower()
         if should_continue != "y":
             continue
         subprocess.run(["gcc", "-std=c11", "-Wall", "-g", file_name], check=True)
@@ -25,3 +25,4 @@ for file_name in glob.glob("*.c", recursive=False):
                 x_split = x.split("\n")
                 return_data = subprocess.run(["./a.out"], input=x_split[0].rstrip().encode(), capture_output=True).stdout.decode().rstrip()
                 print(f"\u001b[{31 + int(return_data == x_split[1].rstrip())}m{return_data}\u001b[0m", x[1])
+            os.remove("a.out")
