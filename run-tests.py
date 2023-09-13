@@ -26,7 +26,7 @@ for file_name in glob.glob("*.c", recursive=False):
             to_run = f.read().split("\n\n")
             total_tests, passed_tests = 0, 0
             for x in to_run:
-                x_split = x.split("\n")
+                x_split = x.rsplit("\n", 1)
                 return_data = subprocess.run(["./a.out"], input=x_split[0].rstrip().encode(), capture_output=True).stdout.decode().rstrip()
                 test_passed_int = int(return_data == x_split[1].rstrip())
                 total_tests += 1
