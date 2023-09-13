@@ -16,6 +16,7 @@ file_only_list = [os.path.basename(os.path.splitext(x)[0]) for x in file_list]
 if sys.platform == "win32":
     os.system("color") # enables ANSI escape characters, bug in Python
 
+exit_code = 0
 for file_name in glob.glob("*.c", recursive=False):
     if file_name.rstrip(".c") in file_only_list:
         should_continue = input(f"{file_name}; run (y/N)? ").lower()
@@ -33,4 +34,7 @@ for file_name in glob.glob("*.c", recursive=False):
                 passed_tests += test_passed_int
                 print(f"({x_split[0]})", x_split[1], f"\u001b[{31 + test_passed_int}m{return_data}\u001b[0m")
             print(f"\u001b[32m{passed_tests} tests passed\u001b[0m, \u001b[{31 - 31*int(total_tests == passed_tests)}m{total_tests - passed_tests} tests failed\u001b[0m")
+            exit_code += total_tests - passed_tests
             os.remove("a.out")
+
+sys.exit(exit_code)
