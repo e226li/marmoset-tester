@@ -31,6 +31,6 @@ for file_name in glob.glob("*.c", recursive=False):
                 test_passed_int = int(return_data == x_split[1].rstrip())
                 total_tests += 1
                 passed_tests += test_passed_int
-                print(f"\u001b[{31 + test_passed_int}m{return_data}\u001b[0m", x_split[1])
+                print(f"({x_split[0]})", x_split[1], f"\u001b[{31 + test_passed_int}m{return_data}\u001b[0m")
             print(f"\u001b[32m{passed_tests} tests passed\u001b[0m, \u001b[{31 - 31*int(total_tests == passed_tests)}m{total_tests - passed_tests} tests failed\u001b[0m")
             os.remove("a.out")
