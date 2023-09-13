@@ -13,6 +13,6 @@ Add gcc to PATH. If using CLion, add C:\Program Files\JetBrains\CLion 2023.x.x\b
 Run in your project folder.
 
 ```bash
-cd ~CLionProjects/project-dir/
-python3 $CLONE_DIR/run-tests.sh
+cd ~/CLionProjects/project-dir/
+python3 $CLONE_DIR/run-tests.py
 ```
