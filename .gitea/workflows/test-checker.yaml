@@ -13,4 +13,3 @@ jobs:
         run: |
           cd tests/
           python3 ../run-tests.py         
-          echo $?
