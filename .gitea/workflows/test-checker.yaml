@@ -1,0 +1,13 @@
+name: Run Tests Test
+on: [push, pull_request]
+jobs:
+  Setup:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - run: cd ${{ github.workspace }}
+      - name: Run checker
+        run: |
+          cd tests/
+          python3 run-tests.py         
