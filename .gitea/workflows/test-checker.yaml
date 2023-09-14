@@ -1,7 +1,7 @@
-name: Run Tests Test
+name: Tests
 on: [push, pull_request]
 jobs:
-  Setup:
+  Run-Tests:
     runs-on: ubuntu-22.04
     steps:
       - name: Check out repository code
@@ -11,3 +11,4 @@ jobs:
         run: |
           cd tests/
           yes y | python3 ../run-tests.py         
+          echo $?
