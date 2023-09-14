@@ -9,7 +9,11 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v3
       - run: cd ${{ github.workspace }}
-      - name: Run checker
+      - name: Run checker (passing)
         run: |
-          cd tests/
-          python3 ../run-tests.py         
+          cd tests/pass/
+          python3 ../../run-tests.py         
+      - name: Run checker (failing)
+        run: |
+          cd tests/fail/
+          python3 ../../run-tests.py    
