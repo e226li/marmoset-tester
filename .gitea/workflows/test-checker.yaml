@@ -10,4 +10,4 @@ jobs:
       - name: Run checker
         run: |
           cd tests/
-          python3 run-tests.py         
+          python3 ../run-tests.py         
