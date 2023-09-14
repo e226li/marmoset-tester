@@ -10,5 +10,5 @@ jobs:
       - name: Run checker
         run: |
           cd tests/
-          yes y | python3 ../run-tests.py         
+          python3 ../run-tests.py         
           echo $?
