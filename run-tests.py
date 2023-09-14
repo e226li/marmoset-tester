@@ -19,7 +19,7 @@ if sys.platform == "win32":
 exit_code = 0
 for file_name in glob.glob("*.c", recursive=False):
     if file_name.rstrip(".c") in file_only_list:
-        should_continue = input(f"{file_name}; run (y/N)? ").lower()
+        should_continue = "y" if os.getenv("DEBIAN_FRONTEND") == "noninteractive" else input(f"{file_name}; run (y/N)? ").lower()
         if should_continue != "y":
             continue
         subprocess.run(["gcc", "-o", "a.out", "-std=c11", "-Wall", "-g", file_name], check=True)
