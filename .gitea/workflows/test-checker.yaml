@@ -16,4 +16,4 @@ jobs:
       - name: Run checker (failing)
         run: |
           cd tests/fail/
-          !python3 ../../run-tests.py    
+          ! python3 ../../run-tests.py    
