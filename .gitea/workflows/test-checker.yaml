@@ -17,3 +17,15 @@ jobs:
         run: |
           cd tests/fail/
           ! python3 ../../run-tests.py    
+      - name: Update badges (success)
+        if: success()
+        run: curl -X 'GET' \
+          'https://badgeapi.docker.162536.xyz/set_badge/?repo=marmoset-test-cases&new_badge=Tests-passing-brightgreen' \
+          -H 'accept: application/json' \
+          -H 'X-API-Key: ${{ secrets.BADGE_API_KEY }}'
+      - name: Update badges (fail)
+        if: failure()
+        run: curl -X 'GET' \
+          'https://badgeapi.docker.162536.xyz/set_badge/?repo=marmoset-test-cases&new_badge=Tests-failing-red' \
+          -H 'accept: application/json' \
+          -H 'X-API-Key: ${{ secrets.BADGE_API_KEY }}'
