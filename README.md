@@ -1,5 +1,7 @@
 # marmoset-test-cases
 
+![](https://badgeapi.docker.162536.xyz/get_badge/?repo=marmoset-test-cases)
+
 ## Setup
 
 ```bash
