@@ -16,18 +16,18 @@ jobs:
       - name: Run checker (failing)
         run: |
           cd tests/fail/
-          ! python3 ../../run-tests.py    
-      - name: Update badges (success)
-        if: needs.pr-check.outputs.number != 'null' && github.ref == 'refs/heads/main' && success()
-        run: |
-          curl -f -X 'GET' \
-            'https://badgeapi.docker.162536.xyz/set_badge/?repo=marmoset-test-cases&new_badge=Tests-passing-brightgreen' \
-            -H 'accept: application/json' \
-            -H 'X-API-Key: ${{ secrets.BADGE_API_KEY }}'
+          ! python3 ../../run-tests.py   
       - name: Update badges (fail)
         if: needs.pr-check.outputs.number != 'null' && github.ref == 'refs/heads/main' && failure()
         run: |
           curl -f -X 'GET' \
             'https://badgeapi.docker.162536.xyz/set_badge/?repo=marmoset-test-cases&new_badge=Tests-failing-red' \
+            -H 'accept: application/json' \
+            -H 'X-API-Key: ${{ secrets.BADGE_API_KEY }}' 
+      - name: Update badges (success)
+        if: needs.pr-check.outputs.number != 'null' && github.ref == 'refs/heads/main' && success()
+        run: |
+          curl -f -X 'GET' \
+            'https://badgeapi.docker.162536.xyz/set_badge/?repo=marmoset-test-cases&new_badge=Tests-passing-brightgreen' \
             -H 'accept: application/json' \
             -H 'X-API-Key: ${{ secrets.BADGE_API_KEY }}'
