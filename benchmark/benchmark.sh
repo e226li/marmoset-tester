@@ -19,6 +19,6 @@ do
 done
 
 export DEBIAN_FRONTEND=noninteractive
-TIMEFORMAT=%0R /usr/bin/time ${@:1} > /dev/null
+/usr/bin/time -f "%e" ${@:1} > /dev/null
 
 cd ../ && rm -rf temp/
