@@ -1,0 +1,19 @@
+name: Benchmarks
+on: [push, pull_request]
+jobs:
+  Run-Benchmarks:
+    runs-on: ubuntu-22.04
+    env: 
+      DEBIAN_FRONTEND: noninteractive
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - run: cd ${{ github.workspace }}
+      - name: Run benchmark
+        run: |
+          cd benchmark/
+          bash benchmark.sh python3 ../run-tests.py                  
+      - name: Run baseline benchmark
+        run: |
+          cd benchmark/
+          bash benchmark.sh python3 ../run-tests.py        
