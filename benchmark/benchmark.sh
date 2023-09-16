@@ -4,12 +4,12 @@ set -e
 mkdir temp
 cd temp
 
-for i in {1..100}
+for i in {1..10}
 do
     cp "../benchmark-program-1.c" "benchmark-program-1-${i}.c"
 done
 
-for i in {1..100}
+for i in {1..10}
 do
     for _ in {1..10000}
     do
