@@ -16,8 +16,8 @@ jobs:
       - name: Run benchmark
         run: |
           cd benchmark/
-          bash benchmark.sh python3 ../run-tests.py                  
+          bash benchmark.sh python3 ../../run-tests.py                  
       - name: Run baseline benchmark
         run: |
           cd benchmark/
-          bash benchmark.sh python3 ../run-tests.py        
+          bash benchmark.sh python3 ../run-tests-benchmark-baseline.py	      
