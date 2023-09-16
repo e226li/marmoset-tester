@@ -18,6 +18,6 @@ do
     done
 done
 
-TIMEFORMAT=%0R time ${@:1} > /dev/null
+TIMEFORMAT=%0R /usr/bin/time ${@:1} > /dev/null
 
 cd ../ && rm -rf temp/
