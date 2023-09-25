@@ -6,10 +6,10 @@ jobs:
     env: 
       DEBIAN_FRONTEND: noninteractive
     steps:
-      - name: Install time
+      - name: Install dependencies
         run: |
           apt-get update -y
-          apt-get install -y time
+          apt-get install -y time bc
       - name: Check out repository code
         uses: actions/checkout@v3
       - run: cd ${{ github.workspace }}
