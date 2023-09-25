@@ -4,6 +4,8 @@ import glob
 import subprocess
 import os
 import sys
+import differ
+import pprint
 
 # will break if there are namespace collisions
 
@@ -27,12 +29,14 @@ for file_name in glob.glob("*.c", recursive=False):
             to_run = f.read().strip().split("\n\n")
             total_tests, passed_tests = 0, 0
             for x in to_run:
-                x_split = x.rsplit("\n", 1)
+                x_split = x.split("\n", 1)
                 return_data = subprocess.run(["./a.out"], input=x_split[0].rstrip().encode(), capture_output=True).stdout.decode().rstrip()
                 test_passed_int = int(return_data == x_split[1].rstrip())
                 total_tests += 1
                 passed_tests += test_passed_int
-                print(f"({x_split[0]})", x_split[1], f"\u001b[{31 + test_passed_int}m{return_data}\u001b[0m")
+                print(f"\u001b[{31 + test_passed_int}m({x_split[0]})\u001b[0m")
+                if not passed_tests:
+                    pprint.pprint(list(differ.Differ().compare(x_split[1].splitlines(), return_data.splitlines())))
             print(f"\u001b[32m{passed_tests} tests passed\u001b[0m, \u001b[{31 - 31*int(total_tests == passed_tests)}m{total_tests - passed_tests} tests failed\u001b[0m")
             exit_code += total_tests - passed_tests
             os.remove("a.out")
