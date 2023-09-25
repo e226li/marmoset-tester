@@ -35,7 +35,7 @@ for file_name in glob.glob("*.c", recursive=False):
                 total_tests += 1
                 passed_tests += test_passed_int
                 print(f"\u001b[{31 + test_passed_int}m({x_split[0]})\u001b[0m")
-                if not passed_tests:
+                if True: # not passed_tests:
                     pprint.pprint(list(difflib.Differ().compare(x_split[1].splitlines(), return_data.splitlines())))
             print(f"\u001b[32m{passed_tests} tests passed\u001b[0m, \u001b[{31 - 31*int(total_tests == passed_tests)}m{total_tests - passed_tests} tests failed\u001b[0m")
             exit_code += total_tests - passed_tests
