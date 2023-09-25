@@ -24,7 +24,7 @@ for file_name in glob.glob("*.c", recursive=False):
         if should_continue != "y":
             continue
         subprocess.run(["gcc", "-o", "a.out", "-std=c11", "-Wall", "-g", file_name], check=True)
-        with open(next(x for x in file_list if os.path.splitext(file_name)[0] == x)) as f:
+        with open(next(x for x in file_list if os.path.splitext(file_name)[0] == os.path.basename(os.path.splitext(x)[0]))) as f:
             to_run = f.read().strip().split("\n\n")
             total_tests, passed_tests = 0, 0
             for x in to_run:
