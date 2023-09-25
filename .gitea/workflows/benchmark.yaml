@@ -24,4 +24,12 @@ jobs:
       - name: Run throughput benchmark
         run: |
           cd benchmark/
-          bash benchmark-throughput.sh python3 ../../run-tests.py  
+          BENCHMARK_THROUGHPUT=$(bash benchmark-throughput.sh python3 ../../run-tests.py)
+          echo "$BENCHMARK_THROUGHPUT"
+      - name: Update benchmark badge
+        if: needs.pr-check.outputs.number != 'null' && github.ref == 'refs/heads/main' && success()
+        run: |
+          curl -f -X 'GET' \
+            "https://badgeapi.docker.162536.xyz/set_badge/?repo=marmoset-test-cases&branch=main&action=throughput&new_badge=Throughput-$(bc <<< \"scale=2; $BENCHMARK_THROUGHPUT / 1024\") kB/s-blue" \
+            -H 'accept: application/json' \
+            -H 'X-API-Key: ${{ secrets.BADGE_API_KEY }}'   
