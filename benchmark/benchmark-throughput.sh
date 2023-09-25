@@ -6,7 +6,7 @@ cd temp
 
 cp "../benchmark-program-2.c" "benchmark-program-2.c"
 
-for _ in {1..100000}
+for _ in {1..5000}
 do
     int_get=$RANDOM
     echo -e "${int_get}\n$((int_get))\n" >> "benchmark-program-2.cases"
