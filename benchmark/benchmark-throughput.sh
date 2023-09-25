@@ -13,6 +13,6 @@ do
 done
 
 export DEBIAN_FRONTEND=noninteractive
-echo "$(($(stat -c '%s' benchmark-program-2.cases) / $(/usr/bin/time -f '%e' ${@:1} 2>&1 > /dev/null)))"
+bc <<< "$(stat -c '%s' benchmark-program-2.cases) / $(/usr/bin/time -f '%e' ${@:1} 2>&1 > /dev/null)"
 
 cd ../ && rm -rf temp/
