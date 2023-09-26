@@ -1,6 +1,6 @@
 # marmoset-test-cases
 
-![](https://badgeapi.docker.162536.xyz/get_badge/?repo=marmoset-test-cases)
+![](https://badgeapi.docker.162536.xyz/get_badge/?repo=marmoset-test-cases) ![](https://badgeapi.docker.162536.xyz/get_badge/?repo=marmoset-test-cases&branch=main&action=throughput)
 
 ## Setup
 
