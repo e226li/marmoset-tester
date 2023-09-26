@@ -30,7 +30,7 @@ for file_name in glob.glob("*.c", recursive=False):
             for x in to_run:
                 x_split = x.split("\n", 1)
                 return_data = subprocess.run(["./a.out"], input=x_split[0].rstrip().encode(), capture_output=True).stdout.decode().rstrip()
-                test_passed_int = int(return_data.rstrip().splitlines() == x_split[1].rstrip().splitlines())
+                test_passed_int = int([z.rstrip() for z in return_data.rstrip().splitlines()] == [z.rstrip() for z in x_split[1].rstrip().splitlines()])
                 total_tests += 1
                 passed_tests += test_passed_int
                 print(f"\u001b[{31 + test_passed_int}m({x_split[0]})\u001b[0m")
